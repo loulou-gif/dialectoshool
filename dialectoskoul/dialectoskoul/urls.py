@@ -28,11 +28,13 @@ router.register(r'user-rules', UserJoinRules, basename='user')
 router.register(r'classes', ClassesViewset, basename='classes')
 router.register(r'level', LevelClassViewSet, basename='levels')
 router.register(r'affectationStudents', affectationStudentViewset, basename='AffectatioStudent')
+router.register(r'diffusionList', diffusionListViewset, basename='diffusionList')
+router.register(r'APILogEntry', APILogEntryViewset, basename='APILogEntry')
 router.register(r'sendEmail', EmailViewset, basename="sendEmail")
 
 urlpatterns = [
-    path('', include(router.urls)),  # Inclure les URLs générées par Django REST Framework
-    path('api-auth/', include('rest_framework.urls')),
-    path('dj_rest_auth/', include('dj_rest_auth.urls')),
+    path('api/', include(router.urls)),  # Inclure les URLs générées par Django REST Framework
+    path('api/api-auth/', include('rest_framework.urls')),
+    path('api/dj_rest_auth/', include('dj_rest_auth.urls')),
     # path('api/token/', obtain_auth_token, name='api_token_auth'),
 ]

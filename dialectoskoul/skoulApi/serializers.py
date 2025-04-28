@@ -42,8 +42,17 @@ class AffectationStudentSerializers(serializers.ModelSerializer):
         model = AffectationStudents
         fields = '__all__'
         
+class diffusionListSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = diffusionList
+        fields = '__all__'
+        
 
 class SendMailSerializers(serializers.ModelSerializer):
     class Meta:
         model = EmailSendModel
+        fields = '__all__'
+class APILogEntrySeriallizers(serializers.ModelSerializer):
+    class Meta:
+        model = APILogEntry
         fields = '__all__'

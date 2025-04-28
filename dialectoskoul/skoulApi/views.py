@@ -36,6 +36,9 @@ class RulesViewSet(viewsets.ModelViewSet):
 class LevelClassViewSet(viewsets.ModelViewSet):
     queryset = LevelClass.objects.all()
     serializer_class = LevelClassSerializers
+class APILogEntryViewset(viewsets.ModelViewSet):
+    queryset = APILogEntry.objects.all().order_by('-created_at')
+    serializer_class = APILogEntrySeriallizers
     
 class ClassesViewset(viewsets.ModelViewSet):
     queryset = Classes.objects.all()
@@ -44,6 +47,10 @@ class ClassesViewset(viewsets.ModelViewSet):
 class affectationStudentViewset(viewsets.ModelViewSet): 
     queryset = AffectationStudents.objects.all()
     serializer_class = AffectationStudentSerializers
+    
+class diffusionListViewset(viewsets.ModelViewSet): 
+    queryset = diffusionList.objects.all()
+    serializer_class = diffusionListSerializers
     
 
 class EmailViewset(viewsets.ModelViewSet):
