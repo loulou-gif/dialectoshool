@@ -33,6 +33,35 @@ class RulesViewSet(viewsets.ModelViewSet):
     queryset = Rules.objects.all()
     serializer_class = RulesSerializer
     
+class ResponsesViewset(viewsets.ModelViewSet): 
+    queryset = Responses.objects.all()
+    serializer_class = ResponsesSerialiser
+    
+class QuestionsViewset(viewsets.ModelViewSet): 
+    queryset = Questions.objects.all()
+    serializer_class = QuestionsSerialiser
+    
+class TestsViewset(viewsets.ModelViewSet): 
+    queryset = Test.objects.all()
+    serializer_class = TestsSerialiser
+    
+class diffusionListViewset(viewsets.ModelViewSet): 
+    queryset = diffusionList.objects.all()
+    serializer_class = diffusionListSerializers
+    
+class categorieViewset(viewsets.ModelViewSet): 
+    queryset = categorie.objects.all()
+    serializer_class = categorieSerializers
+
+class CoursViewset(viewsets.ModelViewSet): 
+    queryset = Courses.objects.all()
+    serializer_class = CoursesSerializer
+    
+class CoursesAffectationViewset(viewsets.ModelViewSet): 
+    queryset = CoursAffectation.objects.all()
+    serializer_class = CoursesAffectationSerializer
+
+
 class LevelClassViewSet(viewsets.ModelViewSet):
     queryset = LevelClass.objects.all()
     serializer_class = LevelClassSerializers

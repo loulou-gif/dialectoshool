@@ -46,6 +46,34 @@ class AffectationStudentSerializers(serializers.ModelSerializer):
         model = AffectationStudents
         fields = '__all__'
         
+class ResponsesSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = Responses
+        fields = '__all__'
+class QuestionsSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = Questions
+        fields = '__all__'
+        
+class CoursesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Courses
+        fields = '__all__'
+        
+class CoursesAffectationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CoursAffectation
+        fields = '__all__'
+        
+class TestsSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = Test
+        fields = '__all__'
+class categorieSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = categorie
+        fields = '__all__'
+        
 class diffusionListSerializers(serializers.ModelSerializer):
     emails = serializers.SerializerMethodField() 
 

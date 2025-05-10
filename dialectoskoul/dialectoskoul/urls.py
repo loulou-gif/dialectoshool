@@ -19,7 +19,8 @@ from django.urls import path, include
 from rest_framework import routers
 from skoulApi.views import *
 from rest_framework.authtoken.views import obtain_auth_token
-
+from . import settings
+from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViews, basename='users')
@@ -32,10 +33,17 @@ router.register(r'affectation', affectationStudentViewset, basename='affectation
 router.register(r'diffusion-list', diffusionListViewset, basename='diffusion-list')
 router.register(r'APILogEntry', APILogEntryViewset, basename='APILogEntry')
 router.register(r'send-email', EmailViewset, basename="send-email")
+router.register(r'Responses', ResponsesViewset, basename='Responses')
+router.register(r'Questions', QuestionsViewset, basename='Questions')
+router.register(r'Tests', TestsViewset, basename='Tests')
+router.register(r'Cours', CoursViewset, basename='Cours')
+router.register(r'CoursesAffectation', CoursesAffectationViewset, basename='CoursesAffectation')
+router.register(r'categorie', categorieViewset, basename='categorie')
+
 
 urlpatterns = [
     path('api/', include(router.urls)),  # Inclure les URLs générées par Django REST Framework
     path('api/api-auth/', include('rest_framework.urls')),
     path('api/dj_rest_auth/', include('dj_rest_auth.urls')),
     # path('api/token/', obtain_auth_token, name='api_token_auth'),
-]
+]+ static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)

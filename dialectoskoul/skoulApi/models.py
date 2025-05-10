@@ -51,14 +51,53 @@ class EmailSendModel(models.Model):
     subject = models.CharField(max_length=20)
     message = models.TextField()
     from_email = models.EmailField()
-    to_email = ArrayField(models.EmailField())
+    to_email = models.TextField(help_text="Séparer les emails par des virgules")
     sent_at = models.DateTimeField(auto_now_add=True)
     criticality = models.CharField(max_length=10)
     created_at = models.DateTimeField(auto_now=True)
     is_sent = models.BooleanField(default=False)
     def __str__(self):
         return f"{self.subject} - {self.from_email} -> {self.to_email}"
+
+
+class Test(models.Model):
+    name = models.CharField(max_length=50)
+    classes = models.ForeignKey(Classes, on_delete=models.CASCADE)
+    question_number = models.IntegerField()
+    level = models.ForeignKey(LevelClass, on_delete=models.CASCADE)
+    # Total = models.IntegerField()
+
+class Responses(models.Model):
+    name = models.CharField(max_length=30)
+    def __str__(self):
+        return f"{self.name}"
     
+class categorie(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return f"{self.name}"
+
+class Courses(models.Model):
+    name = models.CharField(max_length=50)
+    descriptions = models.CharField(max_length=500)
+    pdf = models.FileField(upload_to='Cours/', null=True)
+    def __str__(self):
+        return f"{self.name}"
+    
+class CoursAffectation(models.Model):
+    classes = models.ForeignKey(Classes, on_delete=models.CASCADE)
+    courses = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    def __str__(self):
+        return f"{self.classes} - {self.courses}"
+    
+class Questions(models.Model):
+    name = models.CharField(max_length=100)
+    categories = models.ForeignKey(categorie, on_delete=models.CASCADE)
+    question = models.CharField(max_length=250)
+    response = models.ForeignKey(Responses, on_delete=models.CASCADE)
+    points = models.IntegerField()
+    def __str__(self):
+        return f"{self.name}"
     
 # class APILogEntry(models.Model):
 #     path = models.CharField(max_length=500)
