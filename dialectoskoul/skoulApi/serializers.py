@@ -32,6 +32,10 @@ class LevelClassSerializers(serializers.ModelSerializer):
         fields = '__all__'
         
         
+class PackSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Pack
+        fields = '__all__'
 class ClassesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Classes
@@ -43,10 +47,15 @@ class AffectationStudentSerializers(serializers.ModelSerializer):
         fields = '__all__'
         
 class diffusionListSerializers(serializers.ModelSerializer):
+    emails = serializers.SerializerMethodField() 
+
     class Meta:
         model = diffusionList
-        fields = '__all__'
-        
+        fields = ['id', 'name', 'emails', 'recipients'] 
+
+    def get_emails(self, obj):
+        return list(obj.recipients.values_list('email', flat=True))
+
 
 class SendMailSerializers(serializers.ModelSerializer):
     class Meta:

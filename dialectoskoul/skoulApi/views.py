@@ -40,6 +40,10 @@ class APILogEntryViewset(viewsets.ModelViewSet):
     queryset = APILogEntry.objects.all().order_by('-created_at')
     serializer_class = APILogEntrySeriallizers
     
+class PackViewset(viewsets.ModelViewSet):
+    queryset = Pack.objects.all()
+    serializer_class = PackSerializers
+    
 class ClassesViewset(viewsets.ModelViewSet):
     queryset = Classes.objects.all()
     serializer_class = ClassesSerializer

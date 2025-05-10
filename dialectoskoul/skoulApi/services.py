@@ -6,7 +6,7 @@ def serviceSendEmail(email_obj):
     try:
         send_mail(
             subject=email_obj.subject,
-            message=email_obj.body,
+            message=email_obj.message,
             recipient_list=[email_obj.to_email],
             from_email=email_obj.from_email,
             fail_silently=False,
@@ -18,3 +18,4 @@ def serviceSendEmail(email_obj):
     except Exception as e:
         print(f"Error sending email: {e}")
         return False
+    

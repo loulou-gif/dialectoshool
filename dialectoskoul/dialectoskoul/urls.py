@@ -25,12 +25,13 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViews, basename='users')
 router.register(r'rules', RulesViewSet, basename='rules')
 router.register(r'user-rules', UserJoinRules, basename='user')
+router.register(r'pack', PackViewset, basename='pack')
 router.register(r'classes', ClassesViewset, basename='classes')
 router.register(r'level', LevelClassViewSet, basename='levels')
-router.register(r'affectationStudents', affectationStudentViewset, basename='AffectatioStudent')
-router.register(r'diffusionList', diffusionListViewset, basename='diffusionList')
+router.register(r'affectation', affectationStudentViewset, basename='affectation')
+router.register(r'diffusion-list', diffusionListViewset, basename='diffusion-list')
 router.register(r'APILogEntry', APILogEntryViewset, basename='APILogEntry')
-router.register(r'sendEmail', EmailViewset, basename="sendEmail")
+router.register(r'send-email', EmailViewset, basename="send-email")
 
 urlpatterns = [
     path('api/', include(router.urls)),  # Inclure les URLs générées par Django REST Framework

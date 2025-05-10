@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
 
 # Create your models here.
@@ -21,12 +22,19 @@ class UserJoinRules(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.rules.name if self.rules else 'No Role'}"
     
+
+class Pack(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return f"{self.name}"
 class Classes(models.Model):
     name = models.CharField(max_length=100)
+    pack = models.ForeignKey(Pack, on_delete=models.CASCADE, related_name="pack")
     teacher = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     level = models.ForeignKey(LevelClass,on_delete=models.CASCADE, related_name="classes")
     def __str__(self):
-        return f"{self.name} - {self.level.name}"
+        return f"{self.name} - {self.level.name} - {self.pack.name}"
+    
     
     
 class AffectationStudents(models.Model):
@@ -35,16 +43,19 @@ class AffectationStudents(models.Model):
     
 class diffusionList(models.Model):
     name=models.CharField(max_length=50)
-    email = models.ManyToManyField(User)
+    recipients = models.ManyToManyField(User)
+    def __str__(self):
+        return f"{self.name}" 
 
 class EmailSendModel(models.Model):
     subject = models.CharField(max_length=20)
     message = models.TextField()
     from_email = models.EmailField()
-    to_email = models.EmailField()
+    to_email = ArrayField(models.EmailField())
     sent_at = models.DateTimeField(auto_now_add=True)
     criticality = models.CharField(max_length=10)
     created_at = models.DateTimeField(auto_now=True)
+    is_sent = models.BooleanField(default=False)
     def __str__(self):
         return f"{self.subject} - {self.from_email} -> {self.to_email}"
     
